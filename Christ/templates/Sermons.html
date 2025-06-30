@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .inspiration-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(to bottom right, #fff8f0, #fdfdfd);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    font-family: 'Georgia', serif;
+  }
+
+  .theme-buttons {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .theme-buttons a {
+    display: inline-block;
+    background: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    font-weight: bold;
+  }
+
+  .theme-buttons a:hover {
+    background: #1b5e20;
+  }
+
+  h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  .section {
+    margin-top: 30px;
+  }
+
+  .verse-card {
+    background: #f0f0f8;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4a90e2;
+    border-radius: 10px;
+    font-size: 17px;
+  }
+
+  .song-link {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #0077cc;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .song-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="inspiration-container">
+  <h1>{{ theme }} Inspiration</h1>
+
+  <div class="theme-buttons">
+    <a href="{% url 'sermons' %}?theme=peace">Peace</a>
+    <a href="{% url 'sermons' %}?theme=faith">Faith</a>
+    <a href="{% url 'sermons' %}?theme=joy">Joy</a>
+    <a href="{% url 'sermons' %}?theme=hope">Hope</a>
+    <a href="{% url 'sermons' %}?theme=strength">Strength</a>
+  </div>
+
+  <div class="section">
+    <h2>📖 Bible Verses</h2>
+    {% for verse in content.verses %}
+      <div class="verse-card">{{ verse }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>🎵 Worship Songs</h2>
+    {% for song in content.songs %}
+      <a href="{{ song.url }}" class="song-link" target="_blank">▶️ {{ song.title }}</a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

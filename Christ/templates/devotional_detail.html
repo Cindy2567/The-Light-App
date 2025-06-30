@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="devotional-detail">
+    <h2>{{ devotional.title }}</h2>
+<p><strong>{{ devotional.tag }}</strong></p>
+<p><em>{{ devotional.excerpt }}</em></p>
+
+<img src="{{ devotional.image.url }}" alt="Devotional Image" style="width: 200px; height: auto;">
+
+<!-- ✅ This might be missing -->
+<div class="devotional-content">
+  <p>{{ devotional.content|linebreaks }}</p>
+</div>
+
+<a href="{% url 'events' %}">← Back to Events Page</a>
+
+  </div>
+<style>
+  .devotional-detail {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+    color: #2c2c2c;
+    line-height: 1.7;
+  }
+
+  .devotional-detail h2 {
+    font-size: 28px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .devotional-detail p strong {
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .devotional-detail p em {
+    display: block;
+    margin-top: 8px;
+    color: #555;
+    font-style: italic;
+    font-size: 16px;
+  }
+
+  .devotional-detail img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+  }
+
+  .devotional-content {
+    margin-top: 20px;
+    font-size: 17px;
+    white-space: pre-line;
+  }
+
+  .devotional-detail a {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
+  }
+
+  .devotional-detail a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+{% endblock %}

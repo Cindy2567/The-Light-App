@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+<head >
+    <meta charset="UTF-8">
+    <title>The Light App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'Christ/css/styles.css' %}">
+
+</head>
+
+
+{% block title %}Home | The Light App{% endblock %}
+
+{% block content %}
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    .section-title {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .body-text {
+        font-family: 'Lato', sans-serif;
+    }
+
+    .fade-slide {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeSlideIn 1.6s ease forwards;
+    }
+
+    @keyframes fadeSlideIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .verse-box {
+        background-color: #fefae0;
+        border-left: 4px solid #d6ad60;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border-right: 4px solid #d6ad60;
+    }
+</style>
+
+<!-- Hero Welcome Section -->
+<section class="text-center mb-12 p-10 rounded-lg bg-gradient-to-r from-amber-100 to-yellow-50 shadow-xl fade-slide">
+    <h2 class="text-4xl text-green-800 font-bold section-title mb-3">Welcome to The Light App</h2>
+    <p class="text-lg text-gray-700 body-text">We’re so glad you’re here. Let’s walk together in Christ’s light and love.</p>
+</section>
+
+<!-- Verse of the Day -->
+<section class="mb-10 fade-slide">
+    <h2 class="text-3xl section-title text-center text-slate-700 mb-6"><i class="fas fa-bible mr-2 text-yellow-700"></i>Verse of the Day</h2>
+    <div class="verse-box max-w-2xl mx-auto">
+        <p class="text-lg text-gray-800 body-text mb-2">“{{ verse.text }}”</p>
+        <p class="text-sm text-gray-600 italic text-right">— {{ verse.reference }}</p>
+    </div>
+</section>
+
+<!-- Latest Sermons -->
+<section class="bg-white rounded-lg shadow-lg mb-12 p-8 fade-slide">
+    <h2 class="text-2xl section-title text-center text-green-800 mb-6"><i class="fas fa-church mr-2"></i>Fun Facts About God</h2>
+    <ul class="space-y-4 body-text text-gray-700">
+        {% for sermon in sermons %}
+            <li class="border-b pb-4">
+                <p class="font-semibold">{{ sermon.title }}</p>
+                <p class="text-sm text-gray-500">{{ sermon.date }} — {{ sermon.preacher }}</p>
+            </li>
+        {% empty %}
+            <li><strong>Psalm 103:8</strong></li>
+            <li>The Lord is compassionate and gracious, slow to anger and abounding in love!</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Upcoming Events -->
+<section class="bg-white rounded-lg shadow-lg p-8 fade-slide">
+    <h2 class="text-2xl section-title text-center text-green-800 mb-6"><i class="fas fa-calendar-alt mr-2"></i>Upcoming Christian Events</h2>
+    <ul class="space-y-4 body-text text-gray-700">
+        {% for event in events %}
+            <li class="border-b pb-4">
+                <p class="font-semibold text-green-700">{{ event.title }}</p>
+                <p class="text-sm text-gray-500">{{ event.date }}</p>
+                <p>{{ event.description }}</p>
+            </li>
+        {% empty %}
+            <li><strong>Easter:</strong> The celebration of the death and resurrection of Christ. Victory of life over death.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

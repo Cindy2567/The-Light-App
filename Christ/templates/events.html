@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<style>
+  .devotional {
+    background: white;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .devotional img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 8px;
+  }
+
+  .devotional h3 {
+    font-size: 1.25rem;
+    color: #333;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .devotional p {
+    font-family: 'Lato', sans-serif;
+    color: #555;
+  }
+
+  .meta {
+    color: #888;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Devotionals</h1>
+    <p class="mb-4 text-lg text-gray-700">Daily Bible readings and reflections</p>
+
+   {% for devo in devotionals %}
+  <div class="devotional flex items-start space-x-4">
+    {% if devo.image %}
+      <img src="{{ devo.image.url }}" alt="Devotional Image">
+    {% endif %}
+    <div>
+      <p class="meta">{{ devo.tag }}</p>
+      <h3>{{ devo.title }}</h3>
+      <p>{{ devo.excerpt|truncatewords:20 }}</p>
+      <a href="{% url 'devotional_detail' devo.pk %}">Read More</a>
+
+    </div>
+  </div>
+{% empty %}
+  <p>No devotionals available.</p>
+ {% endfor %}
+
+  </div>
+{% endblock %}

@@ -1,0 +1,133 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="login-page">
+    <div class="login-box">
+      <div class="app-logo"> The Light <span>App</span></div>
+
+      <form class="login-form" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Please enter your username">
+          
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Please enter your password">
+
+          <button type="submit" class="login-btn">Log in</button>
+        </div>
+    
+
+
+    
+    {% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+    <div class="error" style="color:red;">{{ error }}</div>
+  {% endfor %}
+{% endif %}
+
+
+
+    
+      
+
+    <div class="register-link">
+      Don’t have an Account? <a href="{% url 'register' %}">Register</a>
+    </div>
+  </div>
+      </form>
+
+</div>
+
+<style>
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.app-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.app-logo span {
+  color: #007bff;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-btn:hover {
+  background-color: #2980b9;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.register-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+</style>
+{% endblock %}
