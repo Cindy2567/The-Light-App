@@ -136,8 +136,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/home/'  
 
 # Redirect after logout
-LOGOUT_REDIRECT_URL = 'register'  # if your url is named 'register'
+LOGOUT_REDIRECT_URL = '/login/'  # if your url is named 'register'
 
 
-# Where to redirect if someone is not logged in
+
 LOGIN_URL = '/login/'  
+from django.contrib.messages import constants as messages
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+

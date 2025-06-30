@@ -16,7 +16,7 @@ def get_daily_verse():
         return {'text': 'Error retrieving verse.', 'reference': ''}
     return {'text': 'No verse available.', 'reference': ''}
 
-@login_required
+
 def home(request):
     verse = get_daily_verse()
     return render(request, 'home.html', {'verse': verse})
@@ -24,8 +24,7 @@ def home(request):
 def register(request):
     return render(request, 'registration/register.html')
 
-def login_view(request):
-    return render(request, 'registration/login.html')
+
 
 
 def base(request):
