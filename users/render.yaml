@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: the-light-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn FindingGod.wsgi"
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: the-light-app.onrender.com
