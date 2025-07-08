@@ -9,7 +9,7 @@ def homepage(request):
 
 def sermon(request):
    # return HttpResponse("Welcome to the Sermons  page.")
-   return render(request, 'Sermons.html')
+   return render(request, 'sermons.html')
 
 def events(request):
     devotionals = Devotional.objects.order_by('-date')[:5]
