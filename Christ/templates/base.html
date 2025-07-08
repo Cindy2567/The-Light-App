@@ -75,10 +75,9 @@
             </button>
         <nav id="mobile-menu" class="hidden md:hidden flex flex-col items-center bg-green-700 text-white mt-2 space-y-2 py-2">
     <a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a>
-    <a href="#" class="hover:text-yellow-300">About</a>
     <a href="{% url 'sermons' %}" class="hover:text-yellow-300">Sermons</a>
     <a href="{% url 'events' %}" class="hover:text-yellow-300">Events</a>
-    <a href="#" class="hover:text-yellow-300">Contact</a>
+    
 
     {% if user.is_authenticated %}
         <span class="text-yellow-200 font-semibold">Hi, {{ user.username }}!</span>
