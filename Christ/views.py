@@ -34,8 +34,7 @@ def events(request):
     devotionals = Devotional.objects.order_by('-date')[:5]
     return render(request, 'events.html', {'devotionals': devotionals})
 
-def sermons(request):
-    return render(request, 'sermons.html')
+
 
 
 def devotional_detail(request, pk):

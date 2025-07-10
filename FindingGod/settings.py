@@ -58,17 +58,20 @@ ROOT_URLCONF = 'FindingGod.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # ✅ Correct spot
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Good: global templates folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',              # ⬅️ Add this
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',            # ⬅️ Add this if you use static files
             ],
         },
     },
 ]
+
 
 
 WSGI_APPLICATION = 'FindingGod.wsgi.application'
